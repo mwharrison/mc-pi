@@ -5,7 +5,7 @@ Current Release Information \
 
 ### Process Management
 
-View all enabled/running service
+View all enabled/running service \
 `sudo systemctl --type=service`
 
 Reload system processes after a service file change \
@@ -28,6 +28,11 @@ Grep logs \
 Use curl over a specific interface
 `curl --interface eth0 https://api64.ipify.org`
 `curl --interface tun0 google.com https://api.ipify.org`
+
+#### Network Namespaces
+
+Enter shell with network namespace \
+`ip netns exec ns1 /bin/bash --rcfile <(echo "PS1=\"namespace ns1> \"")`
 
 ### Screen
 
