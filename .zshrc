@@ -59,6 +59,10 @@ export LANG=en_US.UTF-8
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# command not found package sourcing
+source /etc/zsh_command_not_found
+
+
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
