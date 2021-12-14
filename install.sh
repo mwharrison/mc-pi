@@ -22,9 +22,22 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 [//]: # change default shell to ZSH
 chsh -s $(which zsh)
 
+#MOTD setup
+rm /etc/motd
+
+# nano /etc/ssh/sshd_config
+# PrintLastLog no
+# link the repo info motd to the proper place and make it executable
+
+ls -s /etc/profile.d/motd.sh /etc/profile.d/motd.sh
+chmod +x /etc/profile.d/motd.sh
+
+
 [//]: # install oh-my-zsh and configure plugins
 ln -s .zshrc $HOME/.zshrc
 ln -s .aliases $HOME/.zshrc
+ln -s .zprofile $HOME/.zprofile
+ln -s .zlogout $HOME/.zlogout
 
 [//]: # (if kiosk)
 apt-get --no-install-recommends install xserver-xorg xserver-xorg-video-fbdev xinit pciutils xinput xfonts-100dpi xfonts-75dpi xfonts-scalable chromium
