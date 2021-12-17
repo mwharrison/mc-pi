@@ -34,10 +34,10 @@ chmod +x /etc/profile.d/motd.sh
 
 
 [//]: # install oh-my-zsh and configure plugins
-ln -s .zshrc $HOME/.zshrc
-ln -s .aliases $HOME/.zshrc
-ln -s .zprofile $HOME/.zprofile
-ln -s .zlogout $HOME/.zlogout
+ln -s "$(pwd)/.zshrc" $HOME/.zshrc
+ln -s "$(pwd)/.aliases" $HOME/.zshrc
+ln -s "$(pwd)/.zprofile" $HOME/.zprofile
+ln -s "$(pwd)/.zlogout" $HOME/.zlogout
 
 [//]: # (if kiosk)
 apt-get --no-install-recommends install xserver-xorg xserver-xorg-video-fbdev xinit pciutils xinput xfonts-100dpi xfonts-75dpi xfonts-scalable chromium
