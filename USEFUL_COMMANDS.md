@@ -23,7 +23,12 @@ Follow logs for a service \
 Grep logs \
 `journalctl -u <service_name>.service | grep -i error`
 
-### Networking
+### Disk Management
+
+Size of directory \
+`du -sh /dir`
+
+## Networking
 
 Use curl over a specific interface
 `curl --interface eth0 https://api64.ipify.org`
@@ -33,6 +38,12 @@ Use curl over a specific interface
 
 Enter shell with network namespace \
 `ip netns exec ns1 /bin/bash --rcfile <(echo "PS1=\"namespace ns1> \"")`
+
+### RSync
+
+Running rsync in the background - and viewing output. \
+`nohup rsync -avp [src] [dst] &` \
+`tail -f nohup.out`
 
 ### Screen
 
