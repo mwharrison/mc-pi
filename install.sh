@@ -6,11 +6,8 @@ echo
 
 if [[ $install_type == server ]]
 then
-  apt update
-  apt install vim
-  apt install zsh
-  apt install git
-  apt install curl
+  sudo apt update
+  sudo apt install vim zsh git curl -y
 
   # nifty package that will tell you which package you need if you try to run a command for something not installed
   apt install command-not-found
@@ -28,13 +25,13 @@ then
 
   if grep Raspberry /proc/cpuinfo; then
     #MOTD setup - I think this is only going to work on raspberry pi.. so we check
-    rm /etc/motd
+    sudo rm /etc/motd
 
     # nano /etc/ssh/sshd_config
     # PrintLastLog no
     # link the repo info motd to the proper place and make it executable
 
-    ls -s /etc/profile.d/motd.sh /etc/profile.d/motd.sh
+    ln -sf ./etc/profile.d/motd.sh /etc/profile.d/motd.sh
     chmod +x /etc/profile.d/motd.sh
   fi
 
