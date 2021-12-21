@@ -6,6 +6,7 @@ alias top='htop'
 alias myip='curl http://ipecho.net/plain; echo'
 alias distro='cat /etc/*-release'
 alias python='/usr/bin/python3' # because we like being cutting edge... or just current
+alias pip='pip3'
 
 # Directory Listing aliases
 alias dir='ls -hFx'
