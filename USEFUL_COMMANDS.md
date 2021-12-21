@@ -3,6 +3,9 @@
 Current Release Information \
 `lsb_release -a`
 
+Kernal information \
+`uname -a`
+
 ### Process Management
 
 View all enabled/running service \
@@ -23,10 +26,35 @@ Follow logs for a service \
 Grep logs \
 `journalctl -u <service_name>.service | grep -i error`
 
-### Disk Management
+### Memory/Hardware Management
+
+Free memory
+`free -h`
+
+Memory configuration, maximum, and speed informatio \
+`sudo dmidecode -t memory`
+
+CPU information
+`lscpu`
+
+Using hwinfo \
+`sudo apt install hwinfo` \
+`hwinfo --short` # show short version of hwinfo \
+`hwinfo --disk` # show disk info
+
+
+### Disk Space Management
 
 Size of directory \
 `du -sh /dir`
+
+### Disk Information
+
+View block devices with extended information \
+`lsblk -fm`
+
+List partitions \
+`sudo fdisk -l`
 
 ## Networking
 
