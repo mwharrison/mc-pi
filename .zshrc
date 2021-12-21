@@ -67,4 +67,8 @@ export LANG=en_US.UTF-8
 [[ -f ~/.aliases ]] && source ~/.aliases
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if zmodload zsh/terminfo && (( terminfo[colors] >= 256 )); then
+  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+else
+  [[ ! -f ~/.p10k-portable.zsh ]] || source ~/.p10k-portable.zsh
+fi

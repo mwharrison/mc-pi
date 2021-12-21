@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
-echo -e 'Install type? [kiosk|server|media|logging]'
+echo -e 'Install type? [basic[b]|kiosk[k]|plex[p]|logging[l]]'
 read install_type
 echo
 
-if [[ $install_type == server ]]
+if [[ $install_type == server || $install_type == s ]]
 then
-  apt update
-  apt install vim
-  apt install zsh
-  apt install git
-  apt install curl
+  sudo apt update
+  sudo apt install vim zsh git curl rsync htop -y
 
   # nifty package that will tell you which package you need if you try to run a command for something not installed
   apt install command-not-found
@@ -28,14 +25,21 @@ then
 
   if grep Raspberry /proc/cpuinfo; then
     #MOTD setup - I think this is only going to work on raspberry pi.. so we check
-    rm /etc/motd
+    sudo rm /etc/motd
 
     # nano /etc/ssh/sshd_config
     # PrintLastLog no
     # link the repo info motd to the proper place and make it executable
 
-    ls -s /etc/profile.d/motd.sh /etc/profile.d/motd.sh
-    chmod +x /etc/profile.d/motd.sh
+    sudo ln -sf "$(pwd)/etc/profile.d/motd.sh" /etc/profile.d/motd.sh
+    sudo chmod +x /etc/profile.d/motd.sh
+
+    ###
+    ### Log2Ram Setup - Helps your poor little Pi SD card not get overwhelmed with logs
+    ###
+    wget https://github.com/azlux/log2ram/archive/master.tar.gz -O log2ram.tar.gz
+    tar xf log2ram.tar.gz; cd log2ram-master
+    sudo ./install.sh
   fi
 
 
@@ -49,7 +53,7 @@ then
 
 elif [[ $install_type == 'kiosk' ]]
 then
-  apt-get --no-install-recommends install xserver-xorg xserver-xorg-video-fbdev xinit pciutils xinput xfonts-100dpi xfonts-75dpi xfonts-scalable chromium
+  sudo apt-get --no-install-recommends install xserver-xorg xserver-xorg-video-fbdev xinit pciutils xinput xfonts-100dpi xfonts-75dpi xfonts-scalable chromium -y
 
 # elif [[ $install_type == 'logging' ]]
 # then
