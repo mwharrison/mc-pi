@@ -1,2 +1,6 @@
-clear
-/etc/profile.d/motd.sh
+if  ( -z $DISPLAY ) &&  ( $(tty) = /dev/tty1 ); then
+    startx
+else
+    clear
+    /etc/profile.d/motd.sh
+fi
