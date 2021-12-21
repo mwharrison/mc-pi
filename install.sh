@@ -51,6 +51,12 @@ then
   ln -s "$(pwd)/.zlogout" $HOME/.zlogout
   ln -s "$(pwd)/.p10k.zsh" $HOME/.p10k.zsh
 
+  [//]: # install github CLI tools (needed to authenticate and push changes from this repo... at least)
+  curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+  sudo apt update
+  sudo apt install gh -y
+
 elif [[ $install_type == 'kiosk' ]]
 then
   sudo apt-get --no-install-recommends install xserver-xorg xserver-xorg-video-fbdev xinit pciutils xinput xfonts-100dpi xfonts-75dpi xfonts-scalable chromium -y
