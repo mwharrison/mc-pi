@@ -6,6 +6,21 @@ Current Release Information \
 Kernal information \
 `uname -a`
 
+ARM CPU Temperature \
+`cat /sys/class/thermal/thermal_zone0/temp`
+
+GPU Temperature \
+`vcgencmd measure_temp` \
+**OR** (if `/opt/vc/bin` isn't in your path) \
+`/opt/vc/bin/vcgencmd measure_temp`
+
+CPU Frequency information \
+(useful if pi is overclocked) \
+`sudo apt install cpufrequtils` \
+`sudo cpufreq-info -sm` (view frequency distribution) \
+`watch -n 1 -x sudo cpufreq-info -fm` (watch frequency, updated every 1 sec)
+
+
 ### Process Management
 
 View all enabled/running service \
@@ -33,6 +48,9 @@ Free memory
 
 Memory configuration, maximum, and speed informatio \
 `sudo dmidecode -t memory`
+
+CPU Frequency
+`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq`
 
 CPU information
 `lscpu`

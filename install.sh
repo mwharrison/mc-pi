@@ -9,10 +9,17 @@ then
   sudo apt update
   sudo apt install vim zsh git curl rsync htop -y
 
-  # nifty package that will tell you which package you need if you try to run a command for something not installed
-  sudo apt install command-not-found
-  sudo apt-file update
-  sudo update-command-not-found
+  echo -e 'Do you want to install command helpers? [y/n]'
+  read command_helper_choice
+  echo
+
+  if [[ $command_helper_choice == y || $command_helper_choice == Y ]]
+  then
+    # nifty package that will tell you which package you need if you try to run a command for something not installed
+    sudo apt install command-not-found
+    sudo apt-file update
+    sudo update-command-not-found
+  fi
 
   # install oh-my-zsh and configure plugins
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -44,6 +51,9 @@ then
 
 
 
+  # link vimrc styling prefs
+  ln -sf "$(pwd)/.vimrc" $HOME/.vimrc
+
   # install oh-my-zsh and configure plugins
   ln -sf "$(pwd)/.zshrc" $HOME/.zshrc
   ln -s "$(pwd)/.aliases" $HOME/.aliases
@@ -51,15 +61,29 @@ then
   ln -s "$(pwd)/.zlogout" $HOME/.zlogout
   ln -s "$(pwd)/.p10k.zsh" $HOME/.p10k.zsh
 
-  # install github CLI tools (needed to authenticate and push changes from this repo... at least)
-  curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
-  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-  sudo apt update
-  sudo apt install gh -y
+  echo -e 'Do you want to install Github CLI? [y/n]'
+  read github_cli_choice
+  echo
+
+  if [[ $command_helper_choice == y || $command_helper_choice == Y ]]
+  then
+    # install github CLI tools (needed to authenticate and push changes from this repo... at least)
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+    sudo apt update
+    sudo apt install gh -y
+  fi
 
 elif [[ $install_type == 'kiosk' ]]
 then
-  sudo apt-get --no-install-recommends install xserver-xorg xserver-xorg-video-fbdev xinit pciutils xinput xfonts-100dpi xfonts-75dpi xfonts-scalable chromium -y
+  # install a very basic window manager
+  sudo apt-get install --no-install-recommends matchbox-window -y
+
+  # install kweb
+  wget http://steinerdatenbank.de/software/kweb-1.7.9.8.tar.gz
+  tar -xzf kweb-1.7.9.8.tar.gz
+  cd kweb-1.7.9.8
+  ./debinstall
 
 # elif [[ $install_type == 'logging' ]]
 # then
