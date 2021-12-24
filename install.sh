@@ -58,6 +58,18 @@ then
     ln -s "$(pwd)/bash/.bash_logout" $HOME/.bash_logout
   fi
 
+  echo -e "Do you want to install telegraf for monitoring this system on the InfluxDB server? [y/n]"
+  read install_telegraf
+
+  if [[ $install_telegraf == y || $install_telegraf == Y ]]
+  then
+
+    sudo ln -srf "$(pwd)/telegraf-client-ubuntu.conf" /etc/telegraf/telegraf.con
+
+  fi
+
+
+
   if grep Raspberry /proc/cpuinfo; then
     #MOTD setup - I think this is only going to work on raspberry pi.. so we check
     sudo rm /etc/motd
