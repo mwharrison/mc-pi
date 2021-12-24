@@ -17,3 +17,6 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+
+# if this is a non-terminal, non-ssh login - startx for dashboard
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx -- -nocursor
