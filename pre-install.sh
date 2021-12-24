@@ -7,4 +7,5 @@ wireless setup
 
 sudo apt install git -y
 
-git clone https://github.com/mwharrison/mc-pi.git
+# get all the mc-pi goodies in your home directory for linking stuff up
+git clone https://github.com/mwharrison/mc-pi.git ~/mc-pi
