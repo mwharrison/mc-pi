@@ -61,10 +61,34 @@ Using hwinfo \
 `hwinfo --disk` # show disk info
 
 
-### Disk Space Management
+### Disk Management
 
 Size of directory \
-`du -sh /dir`
+`du -shc /dir`
+
+View partions \
+`parted -l`
+
+Partion drives \
+`parted <device>`
+`(parted) select <device>`
+`(parted) gpt` (options: aix, amiga, bsd, dvh, gpt, mac, ms-dos, pc98, sun, loop)
+`(parted) print` (to view changes)
+`(parted) mkpart <name> ext4 0% 100%` (to use full drive)
+`quit` (to save changes)
+
+Remove partions \
+`parted <device>`
+`rm <partion_num>`
+
+Format Hard Disk \
+`mkfs -t ext4 <device>` (eg. `/dev/sda1`)
+
+Mount disk \
+``
+
+Unmount Disk \
+``
 
 ### Disk Information
 
